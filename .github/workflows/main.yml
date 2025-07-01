@@ -24,8 +24,12 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install
       - name: Run E2E Test
+        env:
+          OPEN_AI_API_KEY: ${{ secrets.OPEN_AI_API_KEY }}
         run: pnpm test
       - name: Build
+        env:
+          OPEN_AI_API_KEY: ${{ secrets.OPEN_AI_API_KEY }}
         run: pnpm build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
