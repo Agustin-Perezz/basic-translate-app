@@ -2,15 +2,24 @@
   import { client } from '$lib/openia-config';
   import LanguageSelector from './LanguageSelector.svelte';
 
+  const MIN_INPUT_LENGTH = 2;
+
   let input = $state('');
   let translation = $state('');
 
   let sourceLanguage = $state('Spanish');
   let targetLanguage = $state('English');
 
+  let debounceTimeout: ReturnType<typeof setTimeout>;
+
   $effect(() => {
-    if (input.length > 2) {
-      handleTranslate();
+    if (input.length > MIN_INPUT_LENGTH) {
+      clearTimeout(debounceTimeout);
+      debounceTimeout = setTimeout(() => {
+        handleTranslate();
+      }, 1000);
+    } else {
+      clearTimeout(debounceTimeout);
     }
   });
 
@@ -44,21 +53,17 @@
     <div
       class="h-42 rounded-md border border-gray-600 bg-transparent p-4 shadow"
     >
-      {#await handleTranslate()}
-        <div class="flex-1 text-lg whitespace-pre-wrap text-white">
-          Translating...
-        </div>
-      {:then}
-        <div class="flex-1 text-lg whitespace-pre-wrap text-white">
-          <p class="mb-1 text-lg text-white">
-            {#if translation.length === 0}
-              Translation
-            {:else}
-              {translation}
-            {/if}
-          </p>
-        </div>
-      {/await}
+      <div class="flex-1 text-lg whitespace-pre-wrap text-white">
+        <p class="mb-1 text-lg text-white">
+          {#if input.length > MIN_INPUT_LENGTH && translation === ''}
+            Translating...
+          {:else if translation.length === 0}
+            Translation
+          {:else}
+            {translation}
+          {/if}
+        </p>
+      </div>
     </div>
   </div>
 </div>
