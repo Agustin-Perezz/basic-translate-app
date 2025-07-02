@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Icon from '@iconify/svelte';
   import { client } from '$lib/openia-config';
   import LanguageSelector from './LanguageSelector.svelte';
 
@@ -9,6 +10,13 @@
   let sourceLanguage = $state('Spanish');
   let targetLanguage = $state('English');
   let debounceTimeout: ReturnType<typeof setTimeout>;
+
+  function swapLanguages() {
+    const temp = sourceLanguage;
+    sourceLanguage = targetLanguage;
+    targetLanguage = temp;
+    translate();
+  }
 
   const onChange = () => {
     if (input.length > MIN_INPUT_LENGTH) {
@@ -45,7 +53,18 @@
     </div>
   </div>
   <div class="flex flex-1 flex-col">
-    <LanguageSelector bind:value={targetLanguage} {onChange} />
+    <div class="relative flex items-center justify-start">
+      <button
+        class="absolute left-[-21px] rounded-full p-1 text-white hover:bg-gray-700"
+        onclick={swapLanguages}
+        aria-label="Swap languages"
+      >
+        <Icon icon="mdi:swap-horizontal" width="28" height="28" />
+      </button>
+      <div class="ml-6">
+        <LanguageSelector bind:value={targetLanguage} {onChange} />
+      </div>
+    </div>
     <div
       class="h-42 rounded-md border border-gray-600 bg-transparent p-4 shadow"
     >
