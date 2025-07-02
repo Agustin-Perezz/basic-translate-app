@@ -38,10 +38,10 @@
 </script>
 
 <div class="flex w-full max-w-5xl gap-2">
-  <div class="flex flex-1 flex-col">
+  <div class="relative flex flex-1 flex-col">
     <LanguageSelector bind:value={sourceLanguage} {onChange} />
     <div
-      class=" rounded-md border border-gray-600 bg-transparent p-4 shadow-md"
+      class=" relative rounded-md border border-gray-600 bg-transparent p-4 shadow-md"
     >
       <textarea
         bind:value={input}
@@ -50,6 +50,15 @@
         placeholder="Enter text"
         oninput={onChange}
       ></textarea>
+      {#if input.length > 0}
+        <button
+          class="absolute top-2 right-2 rounded-full p-1 text-white hover:bg-gray-700"
+          onclick={() => (input = '')}
+          aria-label="Clear input"
+        >
+          <Icon icon="mdi:close" width="20" height="20" />
+        </button>
+      {/if}
     </div>
   </div>
   <div class="flex flex-1 flex-col">
