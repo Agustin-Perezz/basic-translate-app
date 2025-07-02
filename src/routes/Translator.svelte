@@ -15,10 +15,6 @@
   });
 
   const handleTranslate = async () => {
-    if (input.length <= 2) {
-      return;
-    }
-
     const prompt = `Translate the following text from ${sourceLanguage} to ${targetLanguage}: ${input}`;
 
     const response = await client.chat.completions.create({
