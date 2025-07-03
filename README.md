@@ -71,6 +71,7 @@ pnpm run test
 
 Set the following variables in your .env file:
 It is not recommended to put the API key in the client; the API key for this project is limited the budget to 5 USD.
+
 ```
 VITE_OPEN_AI_API_KEY=your_openai_api_key
 ```
