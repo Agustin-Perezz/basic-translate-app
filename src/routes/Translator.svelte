@@ -28,7 +28,7 @@
   };
 
   const translate = async () => {
-    const prompt = `Translate the following text from ${sourceLanguage} to ${targetLanguage}: ${input}`;
+    const prompt = `Translate the following text from ${sourceLanguage} to ${targetLanguage}: ${input}. Do not add any explanation or extra text`;
     const response = await client.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [{ role: 'user', content: prompt }]
