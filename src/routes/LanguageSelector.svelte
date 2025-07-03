@@ -19,7 +19,7 @@
 <select
   bind:value
   onchange={onChange}
-  class="mb-2 w-28 rounded border border-gray-600 bg-gray-800 px-2 py-1 text-white"
+  class="w-28 rounded border border-gray-600 bg-gray-800 px-2 py-1 text-white md:mb-2"
 >
   {#each languages as { name } (name)}
     <option value={name}>{name}</option>
