@@ -19,7 +19,8 @@
 <select
   bind:value
   onchange={onChange}
-  class="w-28 rounded border border-gray-600 bg-gray-800 px-2 py-1 text-white md:mb-2"
+  class="w-28 rounded border-0 border-b-2 border-blue-400 bg-white px-2 py-1 text-blue-600 focus:border-blue-400 focus:ring-0 md:mb-2"
+  style="border-left: none; border-right: none; border-top: none; border-radius: 0; box-shadow: none;"
 >
   {#each languages as { name } (name)}
     <option value={name}>{name}</option>
