@@ -1,13 +1,22 @@
-# Svelte Template
+# AI-Powered Translation Assistant
 
-Minimal SvelteKit template with Firebase, Tailwind CSS, TypeScript, Playwright, and CI/CD via GitHub Actions.
+A minimal web app for translating text between multiple languages using OpenAI's GPT models. Built with SvelteKit, Tailwind CSS, and TypeScript. Features a modern UI, instant translation, and language swapping.
+
+## Features
+
+- Translate text between popular languages
+- Powered by OpenAI GPT models
+- Swap source and target languages instantly
+- Responsive, modern UI with Tailwind CSS
+- Built with SvelteKit and TypeScript
+- E2E tested with Playwright
 
 ## Technologies
 
 - SvelteKit
 - TypeScript
 - Tailwind CSS
-- Firebase JS SDK
+- OpenAI API
 - Playwright (E2E testing)
 - ESLint & Prettier
 - Husky (Git hooks)
@@ -63,10 +72,7 @@ pnpm run test
 Set the following variables in your .env file:
 
 ```
-VITE_FIREBASE_API_KEY=your_api_key
-VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
-VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_APP_ID=your_app_id
+VITE_OPEN_AI_API_KEY=your_openai_api_key
 ```
 
 ## CI/CD
