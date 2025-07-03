@@ -15,7 +15,7 @@
     const temp = sourceLanguage;
     sourceLanguage = targetLanguage;
     targetLanguage = temp;
-    translate();
+    onChange();
   }
 
   const onChange = () => {
