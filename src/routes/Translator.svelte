@@ -10,6 +10,7 @@
   let sourceLanguage = $state('Spanish');
   let targetLanguage = $state('English');
   let debounceTimeout: ReturnType<typeof setTimeout>;
+  let loading = $state(false);
 
   function swapLanguages() {
     const temp = sourceLanguage;
@@ -29,12 +30,14 @@
   };
 
   const translate = async () => {
+    loading = true;
     const prompt = `Translate the following text from ${sourceLanguage} to ${targetLanguage}: ${input}. Do not add any explanation or extra text`;
     const response = await client.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [{ role: 'user', content: prompt }]
     });
     translation = response.choices[0].message.content || '';
+    loading = false;
   };
 </script>
 
@@ -83,7 +86,7 @@
           class="flex-1 text-lg break-words whitespace-pre-wrap text-gray-800"
         >
           <p class="mb-1 text-lg text-gray-800">
-            {#if input.length > MIN_INPUT_LENGTH && translation === ''}
+            {#if loading}
               Translating...
             {:else if translation.length === 0}
               Translation
