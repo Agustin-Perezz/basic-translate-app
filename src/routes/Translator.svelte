@@ -58,6 +58,7 @@
           bind:value={input}
           rows="4"
           class="w-full resize-none border-none bg-transparent text-lg text-white outline-none focus:ring-0 focus:outline-none"
+          style="scrollbar-width: none; -ms-overflow-style: none;"
           placeholder="Enter text"
           oninput={onChange}
         ></textarea>
@@ -74,9 +75,10 @@
     </div>
     <div class="flex flex-1 flex-col md:ml-2">
       <div
-        class="h-42 rounded-md border border-gray-600 bg-gray-800 p-4 shadow"
+        class="scrollbar-none h-42 max-h-48 overflow-y-auto rounded-md border border-gray-600 bg-gray-800 p-4 shadow"
+        style="scrollbar-width: none; -ms-overflow-style: none;"
       >
-        <div class="flex-1 text-lg whitespace-pre-wrap text-white">
+        <div class="flex-1 text-lg break-words whitespace-pre-wrap text-white">
           <p class="mb-1 text-lg text-white">
             {#if input.length > MIN_INPUT_LENGTH && translation === ''}
               Translating...
@@ -88,6 +90,11 @@
           </p>
         </div>
       </div>
+      <style>
+        div[style*='scrollbar-width']::-webkit-scrollbar {
+          display: none;
+        }
+      </style>
     </div>
   </div>
 </div>
