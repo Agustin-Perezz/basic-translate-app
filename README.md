@@ -1,4 +1,4 @@
-# AI-Powered Translation Assistant
+# AI-Powered Translation Assistant - [![Netlify Status](https://api.netlify.com/api/v1/badges/ac159ecb-8252-47c0-bbbb-bb1c979808e5/deploy-status)](https://app.netlify.com/projects/basic-translate-app/deploys)
 
 A minimal web app for translating text between multiple languages using OpenAI's GPT models. Built with SvelteKit, Tailwind CSS, and TypeScript. Features a modern UI, instant translation, and language swapping.
 
