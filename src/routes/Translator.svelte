@@ -1,6 +1,5 @@
 <script lang="ts">
   import Icon from '@iconify/svelte';
-  import { client } from '$lib/openia-config';
   import LanguageSelector from './LanguageSelector.svelte';
 
   const MIN_INPUT_LENGTH = 2;
@@ -31,12 +30,11 @@
 
   const translate = async () => {
     loading = true;
-    const prompt = `Translate the following text from ${sourceLanguage} to ${targetLanguage}: ${input}. Do not add any explanation or extra text`;
-    const response = await client.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [{ role: 'user', content: prompt }]
+    const response = await fetch('/api/translate', {
+      method: 'POST',
+      body: JSON.stringify({ sourceLanguage, targetLanguage, input })
     });
-    translation = response.choices[0].message.content || '';
+    translation = await response.text();
     loading = false;
   };
 </script>
